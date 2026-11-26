@@ -516,6 +516,13 @@ static constexpr const HotkeyInfo s_hotkey_list[] = {
        System::StopRecordingGPUDump();
    }},
 
+  {"WireframeMode", TRANSLATE_NOOP("Hotkeys", "Graphics"),
+   TRANSLATE_NOOP("Hotkeys", "Change Wireframe Mode"),
+   [](InputButtonEvent event) {
+     if (event == InputButtonEvent::Released)
+       System::ChangeToNextWireframeMode();
+   }},
+
   {"FreecamToggle", TRANSLATE_NOOP("Hotkeys", "Free Camera"), TRANSLATE_NOOP("Hotkeys", "Freecam Toggle"),
    [](InputButtonEvent event) {
      if (event == InputButtonEvent::Released && !Achievements::IsHardcoreModeActive())

@@ -6186,6 +6186,21 @@ void System::StopRecordingGPUDump()
   GPU::StopRecordingGPUDump();
 }
 
+void System::ChangeToNextWireframeMode()
+{
+  if (!IsValid()) {
+    return;
+  }
+
+  auto new_wireframe_mode = static_cast<GPUWireframeMode>(static_cast<u8>(g_settings.gpu_wireframe_mode) + 1);
+  if (new_wireframe_mode == GPUWireframeMode::Count) {
+    new_wireframe_mode = GPUWireframeMode::Disabled;
+  }
+
+  g_settings.gpu_wireframe_mode = new_wireframe_mode;
+  VideoThread::UpdateSettings(true, false, false);
+}
+
 static std::string_view GetCaptureTypeForMessage(bool capture_video, bool capture_audio)
 {
   return capture_video ? (capture_audio ? TRANSLATE_SV("System", "capturing audio and video") :

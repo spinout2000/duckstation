@@ -457,6 +457,9 @@ void SaveScreenshot(std::string path = {}, ScreenshotSavedCallback callback = nu
 bool StartRecordingGPUDump(const char* path = nullptr, u32 num_frames = 1);
 void StopRecordingGPUDump();
 
+/// Change to the next wireframe mode available, or disable it if currently at the last wireframe mode.
+void ChangeToNextWireframeMode();
+
 /// Returns the path that a new media capture would be saved to by default. Safe to call from any thread.
 std::string GetNewCapturePath(const std::string& directory, const std::string_view title, CaptureFileNameFormat format,
                               std::string_view extension);
